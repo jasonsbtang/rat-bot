@@ -1,0 +1,4 @@
+.env
+.idea
+/local_assets
+/ratbot_venv
