@@ -13,8 +13,15 @@ TOKEN = os.getenv('DISCORD_TOKEN')
 # commands are case sensitive. overwhelming feedback to fix this.
 bot = commands.Bot(command_prefix='rat ')
 
+async def on_message(self, message):
+  ctx = await self.get_context(message)
+  if ctx.prefix is not None:
+    ctx.command = self.commands.get(ctx.invoked_with.lower())
+    await self.invoke(ctx)
 
-@bot.command(name='whaddup', help='Say hi to your friendly neighbourhood RAT')
+@bot.command(name='whaddup',
+             aliases=['yo', 'sup', 'eh bud'],
+             help='Say hi to your friendly neighbourhood RAT')
 async def rat_reply(ctx):
     rat_replies = [
         'eat shit@@@@@@@@@@@',
